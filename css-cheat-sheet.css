@@ -1,0 +1,74 @@
+body {background-color: black; color:white;}
+
+#ID {color: blue;} //id
+.Classexample {color: blue;} //class
+div {background-image: url ('background.gif'); height: 60px;}
+.row {background-image: url ('background.gif'); background-repeat: repeat-x; height: 60px;}
+.column {background-image: url ('background.gif'); background-repeat: repeat-y; height: 60px;}
+.backgroundscroll {background-image: url ('background.gif'); background-attachment: inherit | scroll | fixed;}
+.backgroundpostion {background-image: url ('background.gif'); background-position: center center;}
+.textcolor {color: red;}
+.fontstyle {font-style: italic;}
+.underline {text-decoration: underline;}
+
+/*Font properties*/
+.font-size; .font-family: arial, sans-serif; .font-style, .font-weight;
+
+/*Textproperties*/
+.textalign: center, justify, inherit, left, right
+.textdecoration: blink, inherit, line-through, none, overline, underline
+.text-indent: length
+.text-overflow: clip ellipses
+.text-transform: capitalize, inherit, none, lowercase, uppercase
+
+/*Links*/
+a:link {
+	color:blue
+}
+a:visited {
+	color:red
+}
+a:hover {
+	color:green
+}
+a:active {
+	color:yellow
+}
+a.className:link 
+{
+	etc
+	};
+
+/*Lists*/
+
+style="list-style-type: ";
+remove block element: display: inline;
+li {
+	background-image: url('url.png");
+	background-repeat: no-repeat;
+	list-style-type: none;
+	padding-left: 15px;	
+};
+
+/*display*/
+display: inline-block :none :inline :inline-table :list-item
+
+/*overflow*/
+overflow: visible :hidden :auto :scroll :inherit
+
+/*Pseudo*/
+:first-line :fist-line
+:focus :lang :before :after
+
+/*Sprite*/
+combine all images into one large image
+using background-position property
+bacground-image: url("sprite.png");
+background-position: -17px -373px;
+background-repeat: no-repeat;
+widht: 16 px;
+height: 16px;
+
+Section: sectionname
+Class: .classname
+ID: #ID
