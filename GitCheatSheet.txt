@@ -1,0 +1,17 @@
+Git Cheat Sheet
+
+mkdir - make directory
+cd - change in directory
+----
+git clone repository -directory-
+cd directory
+ls -ls
+git status
+----
+git add file
+git commit - m "comment"
+git push origin master
+----
+git diff
+----
+git checkout
