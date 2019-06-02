@@ -1,0 +1,143 @@
+PHP Composer Cheat Sheet
+
+Composer automatically undo dependency resolutions: that means a package is installed and composer installs all the required dependencies
+Autoload all files and classes
+Installing, updating and managing libraries that projects depends on
+
+Comands:
+about                Shows the short information about Composer.
+  archive              Creates an archive of this composer package.
+  browse               [home] Opens the package's repository URL or homepage in your browser.
+  check-platform-reqs  Check that platform requirements are satisfied.
+  clear-cache          [clearcache] Clears composer's internal package cache.
+  config               Sets config options.
+  create-project       Creates new project from a package into given directory.
+  depends              [why] Shows which packages cause the given package to be installed.
+  diagnose             Diagnoses the system to identify common errors.
+  dump-autoload        [dumpautoload] Dumps the autoloader.
+  exec                 Executes a vendored binary/script.
+  global               Allows running commands in the global composer dir ($COMPOSER_HOME).
+  help                 Displays help for a command
+  init                 Creates a basic composer.json file in current directory.
+  install              [i] Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
+  licenses             Shows information about licenses of dependencies.
+  list                 Lists commands
+  outdated             Shows a list of installed packages that have updates available, including their latest version.
+  prohibits            [why-not] Shows which packages prevent the given package from being installed.
+  remove               Removes a package from the require or require-dev.
+  require              Adds required packages to your composer.json and installs them.
+  run-script           Runs the scripts defined in composer.json.
+  search               Searches for packages.
+  show                 [info] Shows information about packages.
+  status               Shows a list of locally modified packages, for packages installed from source.
+  suggests             Shows package suggestions.
+  update               [u|upgrade] Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+  validate             Validates a composer.json and composer.lock.
+  
+  composer require package
+  composer init: creates a .json file with all the information like author, required packages:
+  {
+    "name": "martina/learning_composer",
+    "description": "Learning how to use composer",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martina",
+            "email": "emailadress"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^2.18",
+        "swiftmailer/swiftmailer": "^6.2"
+    }
+}
+
+  
+  to access these packages just add require_once [compser autoload]:
+  require_once __DIR__ ."/vendor/autoload.php";
+  use package;
+  you can also autoload classes, alter the json file:
+  {
+    "require": {
+        "nesbot/carbon": "^2.18",
+        "swiftmailer/swiftmailer": "^6.2"
+    },
+	"autoload": {
+		"classmap":["classes/", "library/"]
+	}
+}
+  need to update autoload: composer dumpautoload
+  
+you can specify files to be load every time:
+  {
+
+    "require": {
+        "nesbot/carbon": "^2.18",
+        "swiftmailer/swiftmailer": "^6.2"
+    },
+	"autoload": {
+		"classmap":["classes/", "library/"],
+        "files":["config/database.php"]
+	}
+}
+
+for Autoloading classes in the same namespace:
+ {
+    "require": {
+        "nesbot/carbon": "^2.18",
+        "swiftmailer/swiftmailer": "^6.2"
+    },
+	"autoload": {
+		"classmap":["classes/", "library/"],
+        "files":["config/database.php"],
+		"psr-4":{
+			"App\\":"src/"
+		}
+	}
+}
+
+it is possible to remove the namespace, so composer will search for all namespaces in that folder
+Package for error handling: filp/whoops
+Creating dependencies: composer require filp/whoops --dev:
+ {
+    "require": {
+        "nesbot/carbon": "^2.18",
+        "swiftmailer/swiftmailer": "^6.2"
+    },
+	"autoload": {
+		"classmap":["classes/", "library/"],
+        "files":["config/database.php"],
+		"psr-4":{
+			"App\\":"src/"
+		}
+	},
+	"require-dev": {
+		"filp/whoops": "^2.1"
+	}
+}
+
+Update Composer: composer update //updates all the packages
+				 composer self-update // updates composer itself
+				 composer update swiftmailer/swiftmailer //updates a specific package/project
+				 
+ optimize autoload files, when you go into production:
+ {
+    "require": {
+        "nesbot/carbon": "^2.18",
+        "swiftmailer/swiftmailer": "^6.2"
+    },
+	"autoload": {
+		"classmap":["classes/", "library/"],
+        "files":["config/database.php"],
+		"psr-4":{
+			"App\\":"src/"
+		}
+	},
+	"require-dev": {
+		"filp/whoops": "^2.1"
+	},
+	"config":{
+		"optimize/autoloader": true
+	}
+}
